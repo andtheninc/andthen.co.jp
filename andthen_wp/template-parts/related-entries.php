@@ -1,5 +1,4 @@
 <?php
-//カテゴリ情報から関連記事を10個ランダムに呼び出す
 $categories = get_the_category($post->ID);
 $category_ID = array();
 foreach($categories as $category):
@@ -16,9 +15,6 @@ $query = new WP_Query($args); ?>
   <?php while ($query -> have_posts()) : $query -> the_post(); ?>
     <li>
       <a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>">
-        <div class="article-recommend-list-overlay">
-        </div>
-        <!-- article-recommend-list-overlay -->
         <div class="article-recommend-list-top">
           <div class="article-recommend-list-img">
             <?php echo get_the_post_thumbnail(); ?>
@@ -39,7 +35,7 @@ $query = new WP_Query($args); ?>
           </div>
           <!-- article-recommend-list-ttl -->
           <div class="article-recommend-list-date">
-            <?php the_time('Y.m.d'); ?>
+            <time><?php the_time('Y.m.d'); ?></time>
           </div>
           <!-- article-recommend-list-date -->
         </div>

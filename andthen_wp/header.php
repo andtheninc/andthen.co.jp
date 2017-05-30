@@ -2,16 +2,23 @@
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="株式会社アンドゼンは、渋谷区を拠点にWeb制作とWebサービス開発を行っております。世の中に新しい常識を打ち出すべく、若手を中心に活動している会社です。高品質はもちろんのこと、納品後の管理・運用面を意識した製品づくりを心がけています。">
   <meta name="keywords" content="web制作, webサービス, ベンチャー, スタートアップ, 本のアプリ">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320"/>
   <meta name="viewport" content="width=device-width">
   <meta name="google-site-verification" content="P4kIXk0YjJT3HQ4HD5MDJVCWRhhZvObDLXLvMMy3GK0" />
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache">
   <title><?php wp_title('|', true, 'right'); ?> <?php bloginfo('name'); ?></title>
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/sanitize.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/css/sanitize.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/css/style.css">
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/animsition.min.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/css/animsition.min.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/css/page.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/library/css/single.css">
+  <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/library/images/favicon.ico">
   <link rel="pinback" href="<?php bloginfo( 'pinback_url' ); ?>" />
   <?php wp_deregister_script('jquery'); ?>
 <!-- WordPressのjQueryを読み込ませない -->
@@ -36,7 +43,7 @@
   <div class="inner">
     <div id="mobile-head">
       <div class="logo">
-        <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/andthen_logo.png"></a>
+        <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/library/images/andthen_logo.png"></a>
       </div>
       <!-- logo -->
       <div id="nav-toggle">
@@ -49,26 +56,21 @@
       <!-- nav-toggle -->
     </div>
     <!-- mobile-head -->
-    <nav id="global-nav">
-      <ul>
-        <li><a href="<?php echo home_url(); ?>"><span>Home</span></a></li>
-        <li><a href="<?php echo home_url(); ?>/company/"><span>Company</span></a>
-          <ul>
-            <li><a href="<?php echo home_url(); ?>/company/company-info/"><span>会社情報</span></a></li>
-            <li><a href="<?php echo home_url(); ?>/comapny/member/"><span>メンバー</span></a></li>
-          </ul>
-        </li>
-        <li><a href="<?php echo home_url(); ?>/service/"><span>Service</span></a>
-          <ul>
-            <li><a href="<?php echo home_url(); ?>/service/web/"><span>Web制作</span></a></li>
-            <li><a href="<?php echo home_url(); ?>/service/app/"><span>サービス開発</span></a></li>
-          </ul>
-        </li>
-        <li><a href="<?php echo home_url(); ?>/works/"><span>Works</span></a></li>
-        <li><a href="<?php echo home_url(); ?>/blog/"><span>Blog</span></a></li>
-        <li><a href="<?php echo home_url(); ?>/contact/"><span>Contact</span></a></li>
-      </ul>
-    </nav>
+    <nav id="global-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+			<?php wp_nav_menu(array(
+					 'container' => false,                           // remove nav container
+					 'container_class' => 'menu cf',                 // class of container (should you choose to use it)
+					 'menu' => 'menu',  // nav name
+					 'menu_class' => 'nav top-nav cf',               // adding custom nav class
+					 'theme_location' => 'main-nav',                 // where it's located in the theme
+					 'before' => '',                                 // before the menu
+								 'after' => '',                                  // after the menu
+								 'link_before' => '<span>',                            // before each link
+								 'link_after' => '</span>',                             // after each link
+								 'depth' => 0,                                   // limit the depth of the nav
+					 'fallback_cb' => ''                             // fallback function (if there is one)
+			)); ?>
+		</nav>
     <!-- global-nav -->
   </div>
  <!-- inner -->

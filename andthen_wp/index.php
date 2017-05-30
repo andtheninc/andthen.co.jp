@@ -5,7 +5,7 @@
     <div class="particles"></div>
     <div class="catch-copy">
       <h1>Be the Original<br>Create the Things...<span class="blinking">_</span></h1>
-      <h2>−−−独創性を重んじる。</h2>
+      <h2>独創性を重んじる。</h2>
     </div>
     <!-- catch-copy -->
   </div>
@@ -22,7 +22,7 @@
         </div>
         <!-- top-sc-cont-ttl -->
         <div class="sp-top-sc-img">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/service-link-bg.jpg">
+          <img src="<?php echo get_template_directory_uri(); ?>/library/images/service-link-bg.jpg">
         </div>
         <!-- sp-top-sc-img -->
         <div class="top-main-sc-sent">
@@ -40,7 +40,7 @@
     </div>
     <!-- top-sc-cont -->
     <div class="top-sc-img">
-      <img src="<?php echo get_template_directory_uri(); ?>/images/service-link-bg.jpg">
+      <img src="<?php echo get_template_directory_uri(); ?>/library/images/service-link-bg.jpg">
     </div>
     <!-- top-sc-img -->
   </div>
@@ -48,7 +48,7 @@
 
   <div class="top-company-wrapper">
     <div class="top-sc-img">
-      <img src="<?php echo get_template_directory_uri(); ?>/images/company-link-bg.png">
+      <img src="<?php echo get_template_directory_uri(); ?>/library/images/company-link-bg.png">
     </div>
     <!-- top-sc-cont-img -->
     <div class="top-sc-cont top-company-cont">
@@ -58,7 +58,7 @@
         </div>
         <!-- top-sc-cont-ttl -->
         <div class="sp-top-sc-img">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/company-link-bg.png">
+          <img src="<?php echo get_template_directory_uri(); ?>/library/images/company-link-bg.png">
         </div>
         <!-- sp-top-sc-img -->
         <div class="top-main-sc-sent">
@@ -84,43 +84,20 @@
     </div>
     <!-- top-main-ttl -->
     <div class="top-works-cont">
-      <ul class="top-works-cont-list">
+      <ul class="works-cont-list">
+        <?php query_posts('post_type=portfolio&post_per_type=6'); ?>
+        <?php if(have_posts()): while(have_posts()): the_post(); ?>
         <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img1.png">
+          <a href="<?php echo get_permalink(); ?>">
+            <figure>
+              <?php the_post_thumbnail(); ?>
+              <figcaption>
+                <p><?php the_title(); ?></p>
+              </figcaption>
+            </figure>
           </a>
         </li>
-        <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img2.png">
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img3.png">
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img4.png">
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img5.png">
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo home_url(); ?>/works/">
-            <div class="top-works-cont-list-overlay"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/images/works-img6.png">
-          </a>
-        </li>
+        <?php endwhile; endif; wp_reset_query(); ?>
       </ul>
       <!-- top-works-cont-list -->
     </div>
@@ -135,7 +112,7 @@
     <!-- top-main-ttl -->
     <div class="top-news-cont">
       <ul class="top-news-cont-list">
-        <?php query_posts('cat=1'); ?>
+        <?php query_posts('cat=1,4'); ?>
           <?php if(have_posts()): while(have_posts()): the_post(); ?>
             <li>
               <a href="<?php echo get_permalink(); ?>">
@@ -151,7 +128,14 @@
                 </div>
                 <!-- top-news-cont-list-date -->
                 <div class="top-news-cont-list-ttl">
-                  <?php the_title(); ?>
+                  <?php
+                  if(mb_strlen($post->post_title, 'UTF-8')>30){
+                  	$title= mb_substr($post->post_title, 0, 30, 'UTF-8');
+                  	echo $title.'…';
+                  }else{
+                  	echo $post->post_title;
+                  }
+                  ?>
                 </div>
                 <!-- top-news-cont-list-ttl -->
               </a>

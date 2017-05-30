@@ -1,4 +1,3 @@
-
 <?php get_header(); ?>
 
 <div class="breadcrumbs">
@@ -11,7 +10,7 @@
 </div>
 <!-- breadcrumbs -->
 
-<div class="main">
+<main class="main">
   <div class="second-layered-ttl">
     <span class="second-layered-ttl-lg">
       <span class="second-layered-ttl-lg-fs">B</span>l<span style="color:#ff8500;">o</span>g
@@ -31,19 +30,16 @@
     <div class="blog-single-cont">
       <div class="blog-single-cont-main">
         <article class="article">
-          <?php if(have_posts()): while(have_posts()): the_post(); ?>
             <div class="article-top">
               <div class="article-cat">
                 <span>
-                  <?php $category = get_the_category();
-                  $cat_name = $category[0]->cat_name;
-                  ?>
-                  <?php echo $cat_name; ?>
+                  <?php $slagname = esc_html(get_post_type_object(get_post_type())->labels->name);
+                  echo $slagname; ?>
                 </span>
               </div>
               <!-- article-cat -->
               <div class="article-date">
-                <?php the_time('Y.m.d'); ?>
+                <time><?php the_time('Y.m.d'); ?></tiem>
               </div>
               <!-- article-date -->
             </div>
@@ -57,10 +53,23 @@
             </div>
             <!-- article-img -->
             <div class="article-sent">
+              <?php
+              $web_title = get_field('web_title');
+              $web_text = get_field('web_text');
+              $web_link = get_field('web_link');
+              if($web_title) {
+              ?>
+              <h2 class="article-header"><?php echo $web_title; ?></h2>
+              <?php } if($web_text) { ?>
+              <p><?php echo $web_text; ?></p>
+              <?php } if($web_link) { ?>
+              <div class="web-link">
+                <a href="<?php echo $web_link; ?>" target="_blank"><?php echo $web_link; ?></a>
+              </div>
+              <?php } ?>
               <?php the_content(); ?>
             </div>
             <!-- article-sent -->
-          <?php endwhile; endif; ?>
         </article>
         <!-- article -->
         <div class="article-author">
@@ -97,14 +106,14 @@
         <div class="article-recommend">
           <div class="article-recommend-top">
             <div class="article-recommend-ttl">
-              あなたにオススメの記事
+              その他のお仕事
             </div>
             <!-- article-recommend-ttl -->
           </div>
           <!-- artilce-recommend-top -->
           <div class="article-recommend-main">
-            <ul class="article-recommend-list">
-              <?php get_template_part('related-entries'); ?>
+            <ul class="article-recommend-list works-cont-list">
+              <?php get_template_part('template-parts/popular-works'); ?>
             </ul>
             <!-- article-recommend-list -->
           </div>
@@ -117,7 +126,7 @@
     <!-- blog-single-cont -->
   </div>
   <!-- blog-cont -->
-</div>
+</main>
 <!-- main -->
 
 <?php get_footer();

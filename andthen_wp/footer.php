@@ -37,7 +37,7 @@
       <!-- site-map -->
       <div class="company-info">
         <div class="footer-logo">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/andthen_logo.png">
+          <img src="<?php echo get_template_directory_uri(); ?>/library/images/andthen_logo.png">
         </div>
         <!-- footer-logo -->
         <div class="footer-contact-link">
@@ -52,12 +52,12 @@
             <ul>
               <li>
                 <a href="https://www.facebook.com/andthenInc0704/?fref=ts" target="_blank">
-                  <img src="<?php echo get_template_directory_uri(); ?>/images/fb-icon.png">
+                  <img src="<?php echo get_template_directory_uri(); ?>/library/images/fb-icon.png">
                 </a>
               </li>
               <li>
                 <a href="https://twitter.com/andthen_inc" target="_blank">
-                  <img src="<?php echo get_template_directory_uri(); ?>/images/tw-icon.png">
+                  <img src="<?php echo get_template_directory_uri(); ?>/library/images/tw-icon.png">
                 </a>
               </li>
             </ul>
@@ -79,7 +79,6 @@
 
 </div>
 <!-- animsition -->
-
 <script>
 //アイキャッチ背景
 jQuery(document).ready(function() {
